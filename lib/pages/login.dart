@@ -35,16 +35,70 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(toolbarHeight: 0),
-      body: SingleChildScrollView(
-        child: _FormularioLogin(
-          width: 500,
-          formKey: formKey,
-          emailController: _emailController,
-          senhaController: _senhaController,
-          onPressedEntrar: onSubmit,
-          onPressedEsqueceuSenha: esqueceuSenha,
-          onPressedNovoUsuario: novoUsuario,
-        ),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth > 1400) {
+            return _FormularioLogin(
+              width: 1000,
+              formKey: formKey,
+              emailController: _emailController,
+              senhaController: _senhaController,
+              onPressedEntrar: onSubmit,
+              onPressedEsqueceuSenha: esqueceuSenha,
+              onPressedNovoUsuario: novoUsuario,
+            );
+          } else if (constraints.maxWidth > 1200) {
+            return _FormularioLogin(
+              width: 800,
+              formKey: formKey,
+              emailController: _emailController,
+              senhaController: _senhaController,
+              onPressedEntrar: onSubmit,
+              onPressedEsqueceuSenha: esqueceuSenha,
+              onPressedNovoUsuario: novoUsuario,
+            );
+          } else if (constraints.maxWidth > 1000) {
+            return _FormularioLogin(
+              width: 700,
+              formKey: formKey,
+              emailController: _emailController,
+              senhaController: _senhaController,
+              onPressedEntrar: onSubmit,
+              onPressedEsqueceuSenha: esqueceuSenha,
+              onPressedNovoUsuario: novoUsuario,
+            );
+          } else if (constraints.maxWidth > 800) {
+            return _FormularioLogin(
+              width: 600,
+              formKey: formKey,
+              emailController: _emailController,
+              senhaController: _senhaController,
+              onPressedEntrar: onSubmit,
+              onPressedEsqueceuSenha: esqueceuSenha,
+              onPressedNovoUsuario: novoUsuario,
+            );
+          } else if (constraints.maxWidth > 600) {
+            return _FormularioLogin(
+              width: 500,
+              formKey: formKey,
+              emailController: _emailController,
+              senhaController: _senhaController,
+              onPressedEntrar: onSubmit,
+              onPressedEsqueceuSenha: esqueceuSenha,
+              onPressedNovoUsuario: novoUsuario,
+            );
+          } else {
+            return _FormularioLogin(
+              width: 300,
+              formKey: formKey,
+              emailController: _emailController,
+              senhaController: _senhaController,
+              onPressedEntrar: onSubmit,
+              onPressedEsqueceuSenha: esqueceuSenha,
+              onPressedNovoUsuario: novoUsuario,
+            );
+          }
+        },
       ),
     );
   }
@@ -73,80 +127,82 @@ class _FormularioLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SizedBox(
-        width: width,
-        child: Padding(
-          padding: const EdgeInsets.all(32),
-          child: Form(
-            key: formKey,
-            child: Column(
-              children: [
-                const Center(
-                  child: Text(
-                    "Login",
-                    style: TextStyle(fontSize: 32),
+    return SingleChildScrollView(
+      child: Center(
+        child: SizedBox(
+          width: width,
+          child: Padding(
+            padding: const EdgeInsets.all(32),
+            child: Form(
+              key: formKey,
+              child: Column(
+                children: [
+                  const Center(
+                    child: Text(
+                      "Login",
+                      style: TextStyle(fontSize: 32),
+                    ),
                   ),
-                ),
-                CampoTexto(
-                  exibeLabel: true,
-                  label: "Nome",
-                  validator: validaCampoVazio,
-                  keyboardType: TextInputType.multiline,
-                  controller: emailController,
-                  hintText: "Digite o titulo da tarefa",
-                  obscureText: false,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: CampoTexto(
+                  CampoTexto(
                     exibeLabel: true,
-                    label: "Senha",
+                    label: "Nome",
                     validator: validaCampoVazio,
-                    // keyboardType: TextInputType.text,
-                    controller: senhaController,
+                    keyboardType: TextInputType.multiline,
+                    controller: emailController,
                     hintText: "Digite o titulo da tarefa",
-                    obscureText: true,
+                    obscureText: false,
                   ),
-                ),
-                Botao(
-                  onPressed: onPressedEntrar,
-                  fontColor: Colors.white,
-                  label: "Entrar",
-                  backgroundColor: Colors.blueGrey,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: TextButton(
-                    onPressed: onPressedEsqueceuSenha,
-                    child: const Text(
-                      "Esqueceu a senha?",
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: CampoTexto(
+                      exibeLabel: true,
+                      label: "Senha",
+                      validator: validaCampoVazio,
+                      // keyboardType: TextInputType.text,
+                      controller: senhaController,
+                      hintText: "Digite o titulo da tarefa",
+                      obscureText: true,
+                    ),
+                  ),
+                  Botao(
+                    onPressed: onPressedEntrar,
+                    fontColor: Colors.white,
+                    label: "Entrar",
+                    backgroundColor: Colors.blueGrey,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: TextButton(
+                      onPressed: onPressedEsqueceuSenha,
+                      child: const Text(
+                        "Esqueceu a senha?",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.blue,
+                          decoration: TextDecoration.underline,
+                          decorationColor: Colors.blue,
+                        ),
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: onPressedNovoUsuario,
+                    child: const Text.rich(TextSpan(
+                      text: "Ainda não tem conta? ",
+                      children: [
+                        TextSpan(
+                          text: "Faça seu cadastro!",
+                          style: TextStyle(color: Colors.blueAccent),
+                        ),
+                      ],
                       style: TextStyle(
                         fontSize: 18,
-                        color: Colors.blue,
-                        decoration: TextDecoration.underline,
-                        decorationColor: Colors.blue,
+                        color: Colors.grey,
                       ),
-                    ),
+                    )),
                   ),
-                ),
-                TextButton(
-                  onPressed: onPressedNovoUsuario,
-                  child: const Text.rich(TextSpan(
-                    text: "Ainda não tem conta? ",
-                    children: [
-                      TextSpan(
-                        text: "Faça seu cadastro!",
-                        style: TextStyle(color: Colors.blueAccent),
-                      ),
-                    ],
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.grey,
-                    ),
-                  )),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
