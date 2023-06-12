@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TestePage extends StatefulWidget {
-  const TestePage({super.key, required this.title});
-
-  final String title;
+  const TestePage({super.key});
 
   @override
   State<TestePage> createState() => _TestePageState();
@@ -14,7 +12,7 @@ class _TestePageState extends State<TestePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: const Text("TestePage"),
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
@@ -37,6 +35,7 @@ class _TestePageState extends State<TestePage> {
                       CampoTeste1(),
                     ],
                   ),
+                  Botao(),
                 ],
               ),
             );
@@ -63,6 +62,7 @@ class _TestePageState extends State<TestePage> {
                       CampoTeste1(),
                     ],
                   ),
+                  Botao(),
                 ],
               ),
             );
@@ -93,6 +93,7 @@ class _TestePageState extends State<TestePage> {
                       CampoTeste1(),
                     ],
                   ),
+                  Botao(),
                 ],
               ),
             );
@@ -114,12 +115,30 @@ class _TestePageState extends State<TestePage> {
                       CampoTeste2(),
                     ],
                   ),
+                  Botao(),
                 ],
               ),
             );
           }
         },
       ),
+    );
+  }
+}
+
+class Botao extends StatelessWidget {
+  const Botao({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {},
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.blueAccent,
+      ),
+      child: const Text("Teste", style: TextStyle(color: Colors.white)),
     );
   }
 }
