@@ -14,20 +14,81 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text("HomePage"),
       ),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-          ],
-        ),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: <Widget>[
+          const TextField(
+            maxLines: 5,
+            minLines: 1,
+            keyboardType: TextInputType.multiline,
+          ),
+          ElevatedButton(onPressed: () {}, child: const Icon(Icons.check)),
+          const Column(
+            children: [
+              Post(),
+              Padding(
+                padding: EdgeInsets.only(left: 32),
+                child: Column(
+                  children: [
+                    Post(),
+                    Post(),
+                    Post(),
+                  ],
+                ),
+              ),
+              Divider(),
+            ],
+          ),
+          const Column(
+            children: [
+              Post(),
+              Padding(
+                padding: EdgeInsets.only(left: 32),
+                child: Column(
+                  children: [
+                    Post(),
+                  ],
+                ),
+              ),
+              Divider(),
+            ],
+          ),
+          const Column(
+            children: [
+              Post(),
+              Padding(
+                padding: EdgeInsets.only(left: 32),
+                child: Column(
+                  children: [],
+                ),
+              ),
+              Divider(),
+            ],
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+    );
+  }
+}
+
+class Post extends StatelessWidget {
+  const Post({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+          // border: Border(
+          //   bottom: BorderSide(color: Colors.grey),
+          // ),
+          ),
+      child: const ListTile(
+        leading: CircleAvatar(),
+        title: Text('Usuario'),
+        subtitle: Text(
+            'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio commodi nihil nam veritatis, laborum eos animi quis in, atque ea excepturi? Inventore vitae laboriosam, delectus nesciunt facere accusantium tenetur consectetur?'),
       ),
     );
   }

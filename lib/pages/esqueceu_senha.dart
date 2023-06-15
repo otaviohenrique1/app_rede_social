@@ -33,11 +33,11 @@ class _EsqueceuSenhaState extends State<EsqueceuSenha> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login"),
+        title: const Text("Esqueceu a senha?"),
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          if (constraints.maxWidth > 1400) {
+          if (constraints.maxWidth > 1000) {
             return _FormularioLogin(
               width: 1000,
               formKey: formKey,
@@ -45,7 +45,7 @@ class _EsqueceuSenhaState extends State<EsqueceuSenha> {
               onPressedProximo: onSubmit,
               onPressedCancelar: () => cancelar(context),
             );
-          } else if (constraints.maxWidth > 1200) {
+          } else if (constraints.maxWidth > 800) {
             return _FormularioLogin(
               width: 800,
               formKey: formKey,
@@ -53,33 +53,9 @@ class _EsqueceuSenhaState extends State<EsqueceuSenha> {
               onPressedProximo: onSubmit,
               onPressedCancelar: () => cancelar(context),
             );
-          } else if (constraints.maxWidth > 1000) {
-            return _FormularioLogin(
-              width: 700,
-              formKey: formKey,
-              emailController: _emailController,
-              onPressedProximo: onSubmit,
-              onPressedCancelar: () => cancelar(context),
-            );
-          } else if (constraints.maxWidth > 800) {
-            return _FormularioLogin(
-              width: 600,
-              formKey: formKey,
-              emailController: _emailController,
-              onPressedProximo: onSubmit,
-              onPressedCancelar: () => cancelar(context),
-            );
-          } else if (constraints.maxWidth > 600) {
-            return _FormularioLogin(
-              width: 500,
-              formKey: formKey,
-              emailController: _emailController,
-              onPressedProximo: onSubmit,
-              onPressedCancelar: () => cancelar(context),
-            );
           } else {
             return _FormularioLogin(
-              width: 400,
+              width: 600,
               formKey: formKey,
               emailController: _emailController,
               onPressedProximo: onSubmit,
@@ -124,17 +100,20 @@ class _FormularioLogin extends StatelessWidget {
                   const Center(
                     child: Text(
                       "Esqueceu a senha? Digite o seu e-mail para que enviaremos um codigo para a recuperação da senha.",
-                      style: TextStyle(fontSize: 32),
+                      style: TextStyle(fontSize: 18),
                     ),
                   ),
-                  CampoTexto(
-                    exibeLabel: true,
-                    label: "E-mail",
-                    validator: validaCampoVazio,
-                    keyboardType: TextInputType.multiline,
-                    controller: emailController,
-                    hintText: "Digite o seu e-mail",
-                    obscureText: false,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 24),
+                    child: CampoTexto(
+                      exibeLabel: true,
+                      label: "E-mail",
+                      validator: validaCampoVazio,
+                      keyboardType: TextInputType.emailAddress,
+                      controller: emailController,
+                      hintText: "Digite o seu e-mail",
+                      obscureText: false,
+                    ),
                   ),
                   Botao(
                     onPressed: onPressedProximo,
@@ -142,11 +121,14 @@ class _FormularioLogin extends StatelessWidget {
                     fontColor: ThemesColors.white,
                     backgroundColor: ThemesColors.blueGrey,
                   ),
-                  Botao(
-                    onPressed: onPressedProximo,
-                    label: "Cancelar",
-                    fontColor: ThemesColors.white,
-                    backgroundColor: ThemesColors.red,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: Botao(
+                      onPressed: onPressedCancelar,
+                      label: "Cancelar",
+                      fontColor: ThemesColors.white,
+                      backgroundColor: ThemesColors.red,
+                    ),
                   ),
                 ],
               ),

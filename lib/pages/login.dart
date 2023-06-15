@@ -1,3 +1,4 @@
+import 'package:app_rede_social/pages/esqueceu_senha.dart';
 import 'package:flutter/material.dart';
 import 'package:app_rede_social/pages/novo_usuario.dart';
 import 'package:app_rede_social/components/campo_texto.dart';
@@ -31,7 +32,10 @@ class _LoginState extends State<Login> {
         context, MaterialPageRoute(builder: (context) => const NovoUsuario()));
   }
 
-  esqueceuSenha() {}
+  esqueceuSenha() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const EsqueceuSenha()));
+  }
 
   onSubmit() {
     if (formKey.currentState!.validate()) {
@@ -48,7 +52,7 @@ class _LoginState extends State<Login> {
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          if (constraints.maxWidth > 1400) {
+          if (constraints.maxWidth > 1000) {
             return _FormularioLogin(
               width: 1000,
               formKey: formKey,
@@ -58,7 +62,7 @@ class _LoginState extends State<Login> {
               onPressedEsqueceuSenha: esqueceuSenha,
               onPressedNovoUsuario: () => novoUsuario(context),
             );
-          } else if (constraints.maxWidth > 1200) {
+          } else if (constraints.maxWidth > 800) {
             return _FormularioLogin(
               width: 800,
               formKey: formKey,
@@ -68,39 +72,9 @@ class _LoginState extends State<Login> {
               onPressedEsqueceuSenha: esqueceuSenha,
               onPressedNovoUsuario: () => novoUsuario(context),
             );
-          } else if (constraints.maxWidth > 1000) {
-            return _FormularioLogin(
-              width: 700,
-              formKey: formKey,
-              emailController: _emailController,
-              senhaController: _senhaController,
-              onPressedEntrar: onSubmit,
-              onPressedEsqueceuSenha: esqueceuSenha,
-              onPressedNovoUsuario: () => novoUsuario(context),
-            );
-          } else if (constraints.maxWidth > 800) {
-            return _FormularioLogin(
-              width: 600,
-              formKey: formKey,
-              emailController: _emailController,
-              senhaController: _senhaController,
-              onPressedEntrar: onSubmit,
-              onPressedEsqueceuSenha: esqueceuSenha,
-              onPressedNovoUsuario: () => novoUsuario(context),
-            );
-          } else if (constraints.maxWidth > 600) {
-            return _FormularioLogin(
-              width: 500,
-              formKey: formKey,
-              emailController: _emailController,
-              senhaController: _senhaController,
-              onPressedEntrar: onSubmit,
-              onPressedEsqueceuSenha: esqueceuSenha,
-              onPressedNovoUsuario: () => novoUsuario(context),
-            );
           } else {
             return _FormularioLogin(
-              width: 400,
+              width: 600,
               formKey: formKey,
               emailController: _emailController,
               senhaController: _senhaController,
@@ -156,7 +130,7 @@ class _FormularioLogin extends StatelessWidget {
                   ),
                   CampoTexto(
                     exibeLabel: true,
-                    label: "Nome",
+                    label: "E-mail",
                     validator: validaCampoVazio,
                     keyboardType: TextInputType.multiline,
                     controller: emailController,

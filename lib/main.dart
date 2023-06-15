@@ -32,7 +32,7 @@ class App extends StatelessWidget {
         ),
         fontFamily: "PublicSans",
       ),
-      home: const Login(),
+      home: const HomePage(),
     );
   }
 }
