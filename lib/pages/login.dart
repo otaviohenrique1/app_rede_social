@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:app_rede_social/pages/novo_usuario.dart';
+import 'package:app_rede_social/components/campo_texto.dart';
 import 'package:app_rede_social/components/botao.dart';
 import 'package:app_rede_social/themes/themes_colors.dart';
 import 'package:app_rede_social/utils/validator.dart';
-import 'package:flutter/material.dart';
 
-import '../components/campo_texto.dart';
+import 'homepage.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -24,18 +26,26 @@ class _LoginState extends State<Login> {
     super.dispose();
   }
 
-  novoUsuario() {}
+  novoUsuario(BuildContext context) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const NovoUsuario()));
+  }
 
   esqueceuSenha() {}
 
   onSubmit() {
-    if (formKey.currentState!.validate()) {}
+    if (formKey.currentState!.validate()) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const HomePage()));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(toolbarHeight: 0),
+      appBar: AppBar(
+        title: const Text("Login"),
+      ),
       body: LayoutBuilder(
         builder: (context, constraints) {
           if (constraints.maxWidth > 1400) {
@@ -46,7 +56,7 @@ class _LoginState extends State<Login> {
               senhaController: _senhaController,
               onPressedEntrar: onSubmit,
               onPressedEsqueceuSenha: esqueceuSenha,
-              onPressedNovoUsuario: novoUsuario,
+              onPressedNovoUsuario: () => novoUsuario(context),
             );
           } else if (constraints.maxWidth > 1200) {
             return _FormularioLogin(
@@ -56,7 +66,7 @@ class _LoginState extends State<Login> {
               senhaController: _senhaController,
               onPressedEntrar: onSubmit,
               onPressedEsqueceuSenha: esqueceuSenha,
-              onPressedNovoUsuario: novoUsuario,
+              onPressedNovoUsuario: () => novoUsuario(context),
             );
           } else if (constraints.maxWidth > 1000) {
             return _FormularioLogin(
@@ -66,7 +76,7 @@ class _LoginState extends State<Login> {
               senhaController: _senhaController,
               onPressedEntrar: onSubmit,
               onPressedEsqueceuSenha: esqueceuSenha,
-              onPressedNovoUsuario: novoUsuario,
+              onPressedNovoUsuario: () => novoUsuario(context),
             );
           } else if (constraints.maxWidth > 800) {
             return _FormularioLogin(
@@ -76,7 +86,7 @@ class _LoginState extends State<Login> {
               senhaController: _senhaController,
               onPressedEntrar: onSubmit,
               onPressedEsqueceuSenha: esqueceuSenha,
-              onPressedNovoUsuario: novoUsuario,
+              onPressedNovoUsuario: () => novoUsuario(context),
             );
           } else if (constraints.maxWidth > 600) {
             return _FormularioLogin(
@@ -86,7 +96,7 @@ class _LoginState extends State<Login> {
               senhaController: _senhaController,
               onPressedEntrar: onSubmit,
               onPressedEsqueceuSenha: esqueceuSenha,
-              onPressedNovoUsuario: novoUsuario,
+              onPressedNovoUsuario: () => novoUsuario(context),
             );
           } else {
             return _FormularioLogin(
@@ -96,7 +106,7 @@ class _LoginState extends State<Login> {
               senhaController: _senhaController,
               onPressedEntrar: onSubmit,
               onPressedEsqueceuSenha: esqueceuSenha,
-              onPressedNovoUsuario: novoUsuario,
+              onPressedNovoUsuario: () => novoUsuario(context),
             );
           }
         },

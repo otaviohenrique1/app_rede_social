@@ -1,9 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:app_rede_social/components/botao.dart';
+import 'package:app_rede_social/components/campo_texto.dart';
 import 'package:app_rede_social/themes/themes_colors.dart';
 import 'package:app_rede_social/utils/validator.dart';
-import 'package:flutter/material.dart';
-
-import '../components/campo_texto.dart';
 
 class NovoUsuario extends StatefulWidget {
   const NovoUsuario({super.key});
@@ -29,10 +28,6 @@ class _NovoUsuarioState extends State<NovoUsuario> {
     super.dispose();
   }
 
-  novoUsuario() {}
-
-  esqueceuSenha() {}
-
   onSubmit() {
     if (formKey.currentState!.validate()) {}
   }
@@ -40,10 +35,12 @@ class _NovoUsuarioState extends State<NovoUsuario> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(toolbarHeight: 0),
+      appBar: AppBar(
+        title: const Text("Novo usuario"),
+      ),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          if (constraints.maxWidth > 1400) {
+          if (constraints.maxWidth > 1000) {
             return _FormularioLogin(
               width: 1000,
               formKey: formKey,
@@ -53,7 +50,7 @@ class _NovoUsuarioState extends State<NovoUsuario> {
               confirmarSenhaController: _confirmarSenhaController,
               onPressedCadastrar: onSubmit,
             );
-          } else if (constraints.maxWidth > 1200) {
+          } else if (constraints.maxWidth > 800) {
             return _FormularioLogin(
               width: 800,
               formKey: formKey,
@@ -63,39 +60,9 @@ class _NovoUsuarioState extends State<NovoUsuario> {
               confirmarSenhaController: _confirmarSenhaController,
               onPressedCadastrar: onSubmit,
             );
-          } else if (constraints.maxWidth > 1000) {
-            return _FormularioLogin(
-              width: 700,
-              formKey: formKey,
-              nomeController: _nomeController,
-              emailController: _emailController,
-              senhaController: _senhaController,
-              confirmarSenhaController: _confirmarSenhaController,
-              onPressedCadastrar: onSubmit,
-            );
-          } else if (constraints.maxWidth > 800) {
-            return _FormularioLogin(
-              width: 600,
-              formKey: formKey,
-              nomeController: _nomeController,
-              emailController: _emailController,
-              senhaController: _senhaController,
-              confirmarSenhaController: _confirmarSenhaController,
-              onPressedCadastrar: onSubmit,
-            );
-          } else if (constraints.maxWidth > 600) {
-            return _FormularioLogin(
-              width: 500,
-              formKey: formKey,
-              nomeController: _nomeController,
-              emailController: _emailController,
-              senhaController: _senhaController,
-              confirmarSenhaController: _confirmarSenhaController,
-              onPressedCadastrar: onSubmit,
-            );
           } else {
             return _FormularioLogin(
-              width: 300,
+              width: 600,
               formKey: formKey,
               nomeController: _nomeController,
               emailController: _emailController,
@@ -138,25 +105,22 @@ class _FormularioLogin extends StatelessWidget {
         child: SizedBox(
           width: width,
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Form(
               key: formKey,
               child: Column(
                 children: [
-                  const Center(
-                    child: Text(
-                      "Login",
-                      style: TextStyle(fontSize: 32),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 24),
+                    child: CampoTexto(
+                      exibeLabel: true,
+                      label: "Nome",
+                      validator: validaCampoVazio,
+                      keyboardType: TextInputType.text,
+                      controller: nomeController,
+                      hintText: "Digite o seu nome",
+                      obscureText: false,
                     ),
-                  ),
-                  CampoTexto(
-                    exibeLabel: true,
-                    label: "Nome",
-                    validator: validaCampoVazio,
-                    keyboardType: TextInputType.text,
-                    controller: nomeController,
-                    hintText: "Digite o seu nome",
-                    obscureText: false,
                   ),
                   CampoTexto(
                     exibeLabel: true,
@@ -168,7 +132,7 @@ class _FormularioLogin extends StatelessWidget {
                     obscureText: false,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    padding: const EdgeInsets.symmetric(vertical: 24),
                     child: CampoTexto(
                       exibeLabel: true,
                       label: "Senha",
@@ -179,23 +143,23 @@ class _FormularioLogin extends StatelessWidget {
                       obscureText: true,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20),
-                    child: CampoTexto(
-                      exibeLabel: true,
-                      label: "Repita a senha",
-                      validator: validaCampoVazio,
-                      keyboardType: TextInputType.text,
-                      controller: confirmarSenhaController,
-                      hintText: "Confirme a sua senha",
-                      obscureText: true,
-                    ),
+                  CampoTexto(
+                    exibeLabel: true,
+                    label: "Repita a senha",
+                    validator: validaCampoVazio,
+                    keyboardType: TextInputType.text,
+                    controller: confirmarSenhaController,
+                    hintText: "Confirme a sua senha",
+                    obscureText: true,
                   ),
-                  Botao(
-                    onPressed: onPressedCadastrar,
-                    label: "Cadastrar",
-                    fontColor: ThemesColors.white,
-                    backgroundColor: ThemesColors.blueGrey,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 32, bottom: 48),
+                    child: Botao(
+                      onPressed: onPressedCadastrar,
+                      label: "Cadastrar",
+                      fontColor: ThemesColors.white,
+                      backgroundColor: ThemesColors.blueGrey,
+                    ),
                   ),
                 ],
               ),
